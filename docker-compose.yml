@@ -32,11 +32,6 @@ services:
       JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS:-3600000}
       FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:8081}
       JPA_DDL_AUTO: ${JPA_DDL_AUTO:-update}
-      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
-      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-https://api.openai.com/v1}
-      OPENAI_CHAT_MODEL: ${OPENAI_CHAT_MODEL:-gpt-4o-mini}
-      OPENAI_EMBEDDING_MODEL: ${OPENAI_EMBEDDING_MODEL:-text-embedding-3-small}
-      AI_ASSISTANT_ENABLED: ${AI_ASSISTANT_ENABLED:-false}
     depends_on:
       mysql:
         condition: service_healthy

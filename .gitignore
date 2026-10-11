@@ -16,3 +16,7 @@ frontend/dist/
 *.iml
 .DS_Store
 Thumbs.db
+
+# Local database backups
+happening_backup.sql
+*.sql

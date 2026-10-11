@@ -1,11 +1,5 @@
 package com.happening.integration;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.PATCH;
-import static org.springframework.http.HttpMethod.POST;
-
 import java.math.BigDecimal;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -17,11 +11,13 @@ import java.time.LocalTime;
 import java.util.Base64;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.cache.CacheManager;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -39,7 +35,6 @@ import com.happening.entity.User;
 import com.happening.repository.BookingRepository;
 import com.happening.repository.CategoryRepository;
 import com.happening.repository.CityRepository;
-import com.happening.repository.EventEmbeddingRepository;
 import com.happening.repository.EventRepository;
 import com.happening.repository.FavoriteRepository;
 import com.happening.repository.ReviewRepository;
@@ -79,8 +74,6 @@ class PlatformWorkflowIntegrationTests {
     @Autowired
     private ReviewRepository reviewRepository;
     @Autowired
-    private EventEmbeddingRepository embeddingRepository;
-    @Autowired
     private AdminService adminService;
     @Autowired
     private CacheManager cacheManager;
@@ -93,7 +86,6 @@ class PlatformWorkflowIntegrationTests {
         bookingRepository.deleteAll();
         favoriteRepository.deleteAll();
         reviewRepository.deleteAll();
-        embeddingRepository.deleteAll();
         eventRepository.deleteAll();
         userRepository.deleteAll();
         categoryRepository.deleteAll();

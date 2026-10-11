@@ -73,11 +73,6 @@ $env:JWT_SECRET = $secret
 
 foreach ($name in @(
         'JWT_EXPIRATION_MS',
-        'AI_ASSISTANT_ENABLED',
-        'OPENAI_API_KEY',
-        'OPENAI_BASE_URL',
-        'OPENAI_CHAT_MODEL',
-        'OPENAI_EMBEDDING_MODEL',
         'JPA_DDL_AUTO'
     )) {
     if ($settings.ContainsKey($name)) {

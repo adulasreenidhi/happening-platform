@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
@@ -22,6 +23,7 @@ function Navbar() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [prevPath, setPrevPath] = useState(location.pathname);
+
   if (prevPath !== location.pathname) {
     setPrevPath(location.pathname);
     setMobileMenuOpen(false);
@@ -32,12 +34,14 @@ function Navbar() {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") setMobileMenuOpen(false);
     };
+
     if (mobileMenuOpen) {
       window.addEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
+
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
@@ -59,7 +63,10 @@ function Navbar() {
         </Link>
 
         {/* Desktop Discovery Links */}
-        <nav className="desktop-nav nav-discovery" aria-label="Primary Discovery Navigation">
+        <nav
+          className="desktop-nav nav-discovery"
+          aria-label="Primary Discovery Navigation"
+        >
           <NavigationLink to="/events">Explore</NavigationLink>
           <NavigationLink to="/categories">Categories</NavigationLink>
           <NavigationLink to="/cities">Cities</NavigationLink>
@@ -67,25 +74,29 @@ function Navbar() {
         </nav>
 
         {/* Desktop Account / Action Links */}
-        <div className="desktop-nav nav-actions" aria-label={user ? "Account actions" : "Authentication"}>
+        <div
+          className="desktop-nav nav-actions"
+          aria-label={user ? "Account actions" : "Authentication"}
+        >
           {user ? (
             <>
-              <NavigationLink to="/assistant" className="nav-assistant-link">
-                <span className="nav-spark-icon" aria-hidden="true">✦</span>
-                Assistant
-              </NavigationLink>
-
               {user.role === "USER" && (
                 <NavigationLink to="/dashboard">Dashboard</NavigationLink>
               )}
+
               {["ORGANIZER", "ADMIN"].includes(user.role) && (
                 <NavigationLink to="/organizer">Organizer</NavigationLink>
               )}
+
               {user.role === "ADMIN" && (
                 <NavigationLink to="/admin">Admin</NavigationLink>
               )}
 
-              <NavigationLink to="/account" className="nav-profile-link" title={user.name}>
+              <NavigationLink
+                to="/account"
+                className="nav-profile-link"
+                title={user.name}
+              >
                 <span className="nav-avatar" aria-hidden="true">
                   {user.name ? user.name.charAt(0).toUpperCase() : "U"}
                 </span>
@@ -117,12 +128,16 @@ function Navbar() {
         <button
           className="mobile-menu-toggle"
           type="button"
-          aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-label={
+            mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-nav-drawer"
           onClick={() => setMobileMenuOpen((open) => !open)}
         >
-          <span className={`hamburger-bar ${mobileMenuOpen ? "is-open" : ""}`} />
+          <span
+            className={`hamburger-bar ${mobileMenuOpen ? "is-open" : ""}`}
+          />
         </button>
       </div>
 
@@ -141,10 +156,15 @@ function Navbar() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mobile-drawer-header">
-              <Link className="brand" to="/" onClick={() => setMobileMenuOpen(false)}>
+              <Link
+                className="brand"
+                to="/"
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 <span className="brand-mark" aria-hidden="true">H</span>
                 <span className="brand-text">HAPPENING</span>
               </Link>
+
               <button
                 type="button"
                 className="mobile-drawer-close"
@@ -155,7 +175,10 @@ function Navbar() {
               </button>
             </div>
 
-            <nav className="mobile-drawer-section" aria-label="Discovery links">
+            <nav
+              className="mobile-drawer-section"
+              aria-label="Discovery links"
+            >
               <span className="mobile-section-label">Discover</span>
               <NavigationLink to="/events">Explore Events</NavigationLink>
               <NavigationLink to="/categories">Categories</NavigationLink>
@@ -171,24 +194,36 @@ function Navbar() {
               {user ? (
                 <>
                   <div className="mobile-user-badge">
-                    <span className="nav-avatar">{user.name?.charAt(0).toUpperCase()}</span>
+                    <span className="nav-avatar">
+                      {user.name?.charAt(0).toUpperCase()}
+                    </span>
                     <div>
                       <strong>{user.name}</strong>
                       <small>{user.role}</small>
                     </div>
                   </div>
 
-                  <NavigationLink to="/assistant">✦ AI Event Assistant</NavigationLink>
                   {user.role === "USER" && (
-                    <NavigationLink to="/dashboard">Personal Dashboard</NavigationLink>
+                    <NavigationLink to="/dashboard">
+                      Personal Dashboard
+                    </NavigationLink>
                   )}
+
                   {["ORGANIZER", "ADMIN"].includes(user.role) && (
-                    <NavigationLink to="/organizer">Organizer Studio</NavigationLink>
+                    <NavigationLink to="/organizer">
+                      Organizer Studio
+                    </NavigationLink>
                   )}
+
                   {user.role === "ADMIN" && (
-                    <NavigationLink to="/admin">Platform Administration</NavigationLink>
+                    <NavigationLink to="/admin">
+                      Platform Administration
+                    </NavigationLink>
                   )}
-                  <NavigationLink to="/account">Profile & Settings</NavigationLink>
+
+                  <NavigationLink to="/account">
+                    Profile &amp; Settings
+                  </NavigationLink>
 
                   <button
                     className="mobile-logout-btn"
@@ -207,6 +242,7 @@ function Navbar() {
                   >
                     Sign in
                   </Link>
+
                   <Link
                     to="/register"
                     className="button button-dark btn-full"
